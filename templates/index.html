@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,6 +31,96 @@
         <p>{{ i }} : {{ result[i] }}</p>
     {% endfor %}
 {% endif %}
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IPL Web App</title>
+</head>
+<body>
+
+<h1>IPL Stats Web Application</h1>
+
+<!-- Team vs Team -->
+<h2>Team vs Team</h2>
+<form action="/teamvteam" method="get">
+    <label>Team 1:</label>
+    <select name="team1">
+        {% for team in teams %}
+            <option>{{ team }}</option>
+        {% endfor %}
+    </select>
+    <label>Team 2:</label>
+    <select name="team2">
+        {% for team in teams %}
+            <option>{{ team }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Compare">
+</form>
+{% if result %}
+    <h3>Head-to-Head Result:</h3>
+    {% for key, value in result.items() %}
+        <p>{{ key }}: {{ value }}</p>
+    {% endfor %}
+{% endif %}
+
+<hr>
+
+<!-- Team Record -->
+<h2>Team Record</h2>
+<form action="/team-record" method="get">
+    <label>Team:</label>
+    <select name="team">
+        {% for team in teams %}
+            <option>{{ team }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Get Record">
+</form>
+{% if team_record %}
+    <h3>Team Performance:</h3>
+    <pre>{{ team_record }}</pre>
+{% endif %}
+
+<hr>
+
+<!-- Batsman Record -->
+<h2>Batsman Record</h2>
+<form action="/batting-record" method="get">
+    <label>Batsman Name:</label>
+    <select name="batsman">
+        {% for batsman in batsmen %}
+            <option>{{ batsman }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Get Batting Stats">
+</form>
+{% if batsman_record %}
+    <h3>Batting Stats:</h3>
+    <pre>{{ batsman_record }}</pre>
+{% endif %}
+
+<!-- Bowler Record -->
+<h2>Bowler Record</h2>
+<form action="/bowling-record" method="get">
+    <label>Bowler Name:</label>
+    <select name="bowler">
+        {% for bowler in bowlers %}
+            <option>{{ bowler }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Get Bowling Stats">
+</form>
+{% if bowler_record %}
+    <h3>Bowling Stats:</h3>
+    <pre>{{ bowler_record }}</pre>
+{% endif %}
+
 
 </body>
 </html>
